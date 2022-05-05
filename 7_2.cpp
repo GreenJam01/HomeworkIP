@@ -173,20 +173,15 @@ tree *node(int x){
  }
  
  }
- int kratdel(tree*&tr,int x){
-     int s=0;tree*t;tree*k;
-     t=Min(tr);
-     if(t->right)t=t->right;
-     t=Next(tr,t->inf);
-     while(t){
-         if(t->inf%x){
-             k=t;
-             t=Next(tr,t->inf);
-             Delete(tr,k);
-         }
-         t=Next(tr,t->inf);
-     }
-     return s; 
+ int deg(tree*&tr,int x){
+     tree*t;tree*k;
+     int deg=0;
+     t=find(tr,x);
+     //if(t->right)t=t->right;
+     if(t->parent)deg++;
+     if(t->left)deg++;
+     if(t->right)deg++;
+     return deg;
  }
 
  int main(){
@@ -203,9 +198,6 @@ tree *node(int x){
  cout<<"Input x = ";
  cin>>x;
  kratdel(tr,x);
- inorder;
- 
-
+ inorder(tr);
  return 0;
  }
-
